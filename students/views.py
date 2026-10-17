@@ -101,11 +101,22 @@ def home(request):
 from django.http import HttpResponse
 
 
+
 def home(request):
-    return HttpResponse(
-        "Bienvenue dans School Manager ! "
-        "Votre application de gestion scolaire."
-    )
+    return HttpResponse("""
+        <h1>Bienvenue dans School Manager</h1>
+        <p>Votre application de gestion scolaire.</p>
+
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="/students/">Liste des étudiants</a></li>
+            <li><a href="/students/15/">Détail d'un étudiant</a></li>
+            <li><a href="/teachers/">Liste des enseignants</a></li>
+            <li><a href="/courses/">Liste des cours</a></li>
+            <li><a href="/about/">À propos de l'école</a></li>
+        </ul>
+    """)
+
 
 
 def student_list(request):
