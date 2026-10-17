@@ -87,3 +87,34 @@ http://127.0.0.1:8000/
 * À propos : `/about/`
 * Administration Django : `/admin/`
 
+## 7. Questions de compréhension
+
+### 1. Pourquoi utilise-t-on un environnement virtuel ?
+
+Un environnement virtuel permet d'isoler les bibliothèques d'un projet Python de celles des autres projets. Cela évite les conflits entre les différentes versions des bibliothèques.
+
+### 2. Pourquoi Django a-t-il besoin de Python ?
+
+Django est un framework développé en Python. Il utilise donc Python pour exécuter le code de l'application web.
+
+### 3. Quelle est la différence entre un projet Django et une application Django ?
+
+Un projet Django représente l'ensemble du site web et sa configuration. Une application Django est une partie du projet qui remplit une fonction précise, par exemple gérer les étudiants.
+
+### 4. À quoi sert le fichier `urls.py` ?
+
+Le fichier `urls.py` définit les adresses URL du site et indique quelle vue doit être appelée pour chaque adresse.
+
+### 5. À quoi sert le fichier `views.py` ?
+
+Le fichier `views.py` contient les fonctions ou les classes qui traitent les requêtes des utilisateurs et préparent les réponses à renvoyer au navigateur.
+
+### 6. Que se passe-t-il lorsque le navigateur demande `/students/` ?
+
+Django reçoit la requête, recherche l'URL `/students/` dans `urls.py`, puis appelle la vue associée. Cette vue prépare et renvoie une réponse au navigateur.
+
+### 7. Pourquoi utilise-t-on Git ?
+
+Git permet de suivre les modifications du code, de conserver l'historique du projet et de revenir à une version précédente si nécessaire.
+
+
