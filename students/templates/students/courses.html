@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des cours - School Manager{% endblock %}
+
+{% block content %}
+
+<h1>Liste des cours</h1>
+
+<p>Bienvenue sur la page des cours de School Manager.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom du cours</th>
+            <th>Classe</th>
+        </tr>
+    </thead>
+
+
+<tbody>
+    {% for course in courses %}
+    <tr>
+        <td>{{ course.nom }}</td>
+        <td>{{ course.classe }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+</table>
+
+{% endblock %}

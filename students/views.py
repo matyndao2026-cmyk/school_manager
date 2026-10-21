@@ -1,140 +1,153 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import Http404
+
+# DONNEES DES ETUDIANTS
+
+STUDENTS = [
+{
+"id": 1,
+"first_name": "Awa",
+"last_name": "Diop",
+"classe": "L1",
+"active": True,
+},
+{
+"id": 2,
+"first_name": "Fatou",
+"last_name": "Ndiaye",
+"classe": "L2",
+"active": True,
+},
+{
+"id": 3,
+"first_name": "Moussa",
+"last_name": "Fall",
+"classe": "L1",
+"active": False,
+},
+{
+"id": 4,
+"first_name": "Ibrahima",
+"last_name": "Sow",
+"classe": "L3",
+"active": True,
+},
+]
+
+# DONNEES DES ENSEIGNANTS
+
+TEACHERS = [
+{
+"first_name": "Mamadou",
+"last_name": "Ba",
+"subject": "Mathématiques",
+},
+{
+"first_name": "Aïssatou",
+"last_name": "Sy",
+"subject": "Informatique",
+},
+{
+"first_name": "Cheikh",
+"last_name": "Diallo",
+"subject": "Anglais",
+},
+]
+
+# PAGE D'ACCUEIL
 
 def home(request):
-    html = """
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>School Manager</title>
+    context = {
+        "school_name": "Lycée d'Excellence de Dakar",
+        "nb_classes": 12,
+    }
+    return render(request, "students/home.html", context)
 
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f4f8;
-                margin: 0;
-                text-align: center;
-            }
-
-            header {
-                background-color: #17365d;
-                color: white;
-                padding: 30px;
-            }
-
-            h1 {
-                margin: 0;
-                font-size: 35px;
-            }
-
-            main {
-                padding: 30px;
-            }
-
-            .carte {
-                background-color: white;
-                padding: 20px;
-                margin: 15px auto;
-                max-width: 450px;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px #cccccc;
-            }
-
-            h2 {
-                color: #17365d;
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-            }
-
-            li {
-                background-color: #e3ecf7;
-                margin: 10px;
-                padding: 12px;
-                border-radius: 5px;
-            }
-
-            footer {
-                background-color: #17365d;
-                color: white;
-                padding: 15px;
-                margin-top: 30px;
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <h1>School Manager</h1>
-            <p>Votre plateforme de gestion scolaire</p>
-        </header>
-
-        <main>
-            <div class="carte">
-                <h2>Bienvenue !</h2>
-                <p>Gérez facilement les informations de votre établissement scolaire.</p>
-            </div>
-
-            <div class="carte">
-                <h2>Nos fonctionnalités</h2>
-
-                <ul>
-                    <li>Gestion des étudiants</li>
-                    <li>Gestion des enseignants</li>
-                    <li>Gestion des cours</li>
-                    <li>Gestion des notes</li>
-                </ul>
-            </div>
-        </main>
-
-        <footer>
-            <p>© 2026 School Manager - Gestion scolaire</p>
-        </footer>
-    </body>
-    </html>
-    """
-
-    return HttpResponse(html)
-
-from django.http import HttpResponse
-
-
-
-def home(request):
-    return HttpResponse("""
-        <h1>Bienvenue dans School Manager</h1>
-        <p>Votre application de gestion scolaire.</p>
-
-        <h2>Navigation</h2>
-        <ul>
-            <li><a href="/students/">Liste des étudiants</a></li>
-            <li><a href="/students/15/">Détail d'un étudiant</a></li>
-            <li><a href="/teachers/">Liste des enseignants</a></li>
-            <li><a href="/courses/">Liste des cours</a></li>
-            <li><a href="/about/">À propos de l'école</a></li>
-        </ul>
-    """)
-
-
+# LISTE DES ETUDIANTS
 
 def student_list(request):
-    return HttpResponse("Liste des étudiants")
+    context = {
+        "students": STUDENTS,
+}
+    return render(request, "students/student_list.html", context)
 
+# DETAIL D'UN ETUDIANT
 
 def student_detail(request, id):
-    return HttpResponse(f"Détail de l'étudiant {id}")
+    for student in STUDENTS:
+        if student["id"] == id:
+            return render(
+                request,
+                "students/student_detail.html",
+                {"student": student},
+            )
 
+    raise Http404("Étudiant introuvable")
+
+
+# LISTE DES ENSEIGNANTS
+
+def student_detail(request, id):
+    for student in STUDENTS:
+        if student["id"] == id:
+            return render(
+                request,
+                "students/student_detail.html",
+                {"student": student},
+            )
+
+# LISTE DES ENSEIGNANTS
 
 def teacher_list(request):
-    return HttpResponse("Liste des enseignants")
+    context = {
+        "teachers": TEACHERS,
+    }
+    return render(request, "students/teachers.html", context)
+           
 
+# LISTE DES COURS
 
 def course_list(request):
-    return HttpResponse("Liste des cours")
+    courses = [
+        {"nom": "Mathématiques", "classe": "L1"},
+        {"nom": "Informatique", "classe": "L2"},
+        {"nom": "Français", "classe": "L1"},
+    ]
 
+    context = {
+        "courses": courses,
+    }
+
+    return render(request, "students/courses.html", context)
+
+
+# PAGE A PROPOS
 
 def about(request):
-    return HttpResponse("À propos de School Manager")
+    context = {
+        "school_name": "Lycée d'Excellence de Dakar",
+        "description": (
+            "School Manager est une application de gestion scolaire "
+            "permettant de consulter les étudiants, les enseignants "
+            "et les cours de l'établissement."
+        ),
+    }
+    return render(request, "students/about.html", context)
 
+# FILTRER LES ETUDIANTS PAR CLASSE
+
+def students_by_class(request, classe):
+    students = []
+
+    for student in STUDENTS:
+        if student["classe"].upper() == classe.upper():
+            students.append(student)
+
+    context = {
+        "students": students,
+        "classe": classe,
+    }
+
+    return render(request, "students/student_list.html", context)
+    def about(request): 
+        return render(request, "students/about.html") 

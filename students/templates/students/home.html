@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil - School Manager{% endblock %}
+
+{% block content %} <h1>Bienvenue sur School Manager</h1>
+
+
+<p>Établissement : {{ school_name }}</p>
+<p>Nombre de classes : {{ nb_classes }}</p>
+<p>Votre plateforme de gestion scolaire.</p>
+
+<h2>Menu de navigation</h2>
+<ul>
+    <li><a href="{% url 'home' %}">Accueil</a></li>
+    <li><a href="{% url 'student_list' %}">Liste des étudiants</a></li>
+    <li><a href="/teachers/">Liste des enseignants</a></li>
+    <li><a href="/courses/">Liste des cours</a></li>
+    <li><a href="/about/">À propos</a></li>
+</ul>
+
+
+{% endblock %}

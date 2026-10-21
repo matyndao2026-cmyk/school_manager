@@ -1,0 +1,36 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}Détail de l'étudiant{% endblock %}
+
+{% block content %}
+
+<h1>Détail de l'étudiant</h1>
+
+<p><strong>Numéro :</strong> {{ student.id }}</p>
+
+<p><strong>Nom :</strong> {{ student.nom }}</p>
+
+<p><strong>Prénom :</strong> {{ student.prenom }}</p>
+
+<p><strong>Classe :</strong> {{ student.classe }}</p>
+
+<p>
+    <strong>Statut :</strong>
+    {% if student.actif %}
+        Actif
+    {% else %}
+        Inactif
+    {% endif %}
+</p>
+
+<br>
+
+<a href="{% url 'student_list' %}">Retour à la liste des étudiants</a>
+
+<br><br>
+
+<a href="{% url 'home' %}">Retour à l'accueil</a>
+
+{% endblock %}
+```
