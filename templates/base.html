@@ -9,12 +9,21 @@
 <body>
     <header>
         <h2>School Manager</h2>
-        <nav>
-            <a href="{% url 'home' %}">Accueil</a>
-            <a href="{% url 'student_list' %}">Étudiants</a>
-            <a href="/teachers/">Enseignants</a>
-            <a href="/about/">À propos</a>
-        </nav>
+       <nav>
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Accueil</a>
+
+
+<a href="{% url 'student_list' %}" class="{% if request.resolver_match.url_name == 'student_list' %}active{% endif %}">Étudiants</a>
+
+<a href="{% url 'teacher_list' %}" class="{% if request.resolver_match.url_name == 'teacher_list' %}active{% endif %}">Enseignants</a>
+
+<a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">À propos</a>
+
+<a href="{% url 'course_list' %}" class="{% if request.resolver_match.url_name == 'course_list' %}active{% endif %}">Cours</a>
+
+
+</nav>
+
     </header>
     <main>
         {% block content %}{% endblock %}

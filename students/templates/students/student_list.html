@@ -33,11 +33,11 @@
 
             <td>
                 <a href="{% url 'student_detail' student.id %}">
-                    {{ student.nom|upper }}
+                    {{ student.last_name|upper }}
                 </a>
             </td>
 
-            <td>{{ student.prenom }}</td>
+            <td>{{ student.first_name }}</td>
 
             <td>
                 <a href="{% url 'students_by_class' student.classe %}">

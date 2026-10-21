@@ -87,14 +87,6 @@ def student_detail(request, id):
 
 # LISTE DES ENSEIGNANTS
 
-def student_detail(request, id):
-    for student in STUDENTS:
-        if student["id"] == id:
-            return render(
-                request,
-                "students/student_detail.html",
-                {"student": student},
-            )
 
 # LISTE DES ENSEIGNANTS
 
