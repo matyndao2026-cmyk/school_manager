@@ -250,3 +250,83 @@ J'ai également appris à organiser une application Django en séparant le trait
 
 La prochaine étape sera de connecter l'application à une base de données afin de rendre la gestion des étudiants plus complète et professionnelle.
 
+
+# Questions de compréhension
+
+## 1. Pourquoi ne faut-il pas mettre directement les données des étudiants dans le code Python ?
+
+Il ne faut pas mettre directement les données dans le code Python, car cela rend leur modification difficile. En utilisant une base de données, on peut ajouter, modifier, supprimer et consulter les étudiants sans modifier le code source de l'application.
+
+## 2. Qu'est-ce qu'une table, une ligne, une colonne et une clé primaire dans une base de données ?
+
+- **Table :** ensemble de données organisées sur un même sujet, par exemple la table `Student`.
+- **Ligne :** représente un enregistrement, c'est-à-dire un étudiant.
+- **Colonne :** représente une information sur un étudiant, par exemple son prénom, son nom ou son adresse e-mail.
+- **Clé primaire :** identifiant unique permettant de distinguer chaque enregistrement. Dans Django, un champ `id` est généralement créé automatiquement.
+
+## 3. Qu'est-ce qu'un Model Django ? Comment ses attributs sont-ils représentés dans la base de données ?
+
+Un Model Django est une classe Python qui représente une table dans la base de données.
+
+Chaque attribut du modèle correspond généralement à une colonne de cette table.
+
+Exemple :
+
+```python
+class Student(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+```
+
+Dans cet exemple, Django crée une table avec les colonnes `first_name`, `last_name` et `email`.
+
+## 4. Quelle est la différence entre makemigrations et migrate ?
+
+- **makemigrations :** détecte les modifications apportées aux modèles et prépare les fichiers de migration.
+- **migrate :** applique ces migrations à la base de données pour créer ou modifier les tables.
+
+Exemple :
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## 5. Quelle est la différence entre Student.objects.all(), get() et filter() ?
+
+Ces méthodes permettent de récupérer des données depuis la base de données.
+
+- **all() :** récupère tous les étudiants.
+- **get() :** récupère un seul étudiant correspondant à un critère précis. Une erreur est déclenchée si aucun résultat ou plusieurs résultats sont trouvés.
+- **filter() :** récupère tous les étudiants qui correspondent à une condition. Le résultat peut contenir zéro, un ou plusieurs étudiants.
+
+Exemples :
+
+```python
+Student.objects.all()
+
+Student.objects.get(id=1)
+
+Student.objects.filter(classe="L1")
+```
+
+## 6. Pourquoi utilise-t-on get_object_or_404() plutôt que get() directement dans une vue Django ?
+
+On utilise `get_object_or_404()` pour récupérer un objet et afficher automatiquement une page d'erreur HTTP 404 si cet objet n'existe pas.
+
+Cela évite qu'une erreur non gérée soit affichée à l'utilisateur.
+
+Exemple :
+
+```python
+from django.shortcuts import get_object_or_404
+
+def student_detail(request, id):
+    student = get_object_or_404(Student, id=id)
+    return render(request, "students/student_detail.html", {
+        "student": student
+    })
+```
+
+Si l'étudiant existe, sa page de détail s'affiche. Sinon, Django renvoie une erreur 404 (page introuvable).
