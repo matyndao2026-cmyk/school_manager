@@ -1,28 +1,24 @@
-
-{% extends "base.html" %}
-
-{% block title %}Liste des étudiants - School Manager{% endblock %}
+﻿{% extends "base.html" %}
 
 {% block content %}
 
 <h1>Liste des étudiants</h1>
 
-<p>Voici la liste des étudiants inscrits dans notre établissement.</p>
+<form method="get">
+    <input type="text" name="q" value="{{ query }}" placeholder="Nom ou prénom">
+    <button type="submit">Rechercher</button>
+</form>
 
-<p>
-    Nombre total :
-    {{ students|length }}
-    étudiant{{ students|length|pluralize }}
-</p>
-
-<table border="1" cellpadding="10" cellspacing="0">
+<table>
     <thead>
         <tr>
-            <th>Numéro</th>
-            <th>Nom</th>
+            <th>ID</th>
             <th>Prénom</th>
+            <th>Nom</th>
             <th>Classe</th>
+            <th>E-mail</th>
             <th>Statut</th>
+            <th>Détails</th>
         </tr>
     </thead>
 
@@ -30,41 +26,33 @@
         {% for student in students %}
         <tr>
             <td>{{ student.id }}</td>
-
-            <td>
-                <a href="{% url 'student_detail' student.id %}">
-                    {{ student.last_name|upper }}
-                </a>
-            </td>
-
             <td>{{ student.first_name }}</td>
-
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.classe }}</td>
             <td>
-                <a href="{% url 'students_by_class' student.classe %}">
-                    {{ student.classe }}
+                <a href="mailto:{{ student.email }}">
+                    {{ student.email }}
                 </a>
             </td>
-
             <td>
-                {% if student.actif %}
-                    <strong>Actif</strong>
+                {% if student.active %}
+                    Actif
                 {% else %}
-                    <strong>Inactif</strong>
+                    Inactif
                 {% endif %}
             </td>
+            <td>
+                <a href="{% url 'students:student_detail' student.id %}">
+                    Voir les détails
+                </a>
+            </td>
         </tr>
-
         {% empty %}
         <tr>
-            <td colspan="5">Aucun étudiant trouvé.</td>
+            <td colspan="7">Aucun étudiant trouvé.</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<br>
-
-<a href="{% url 'home' %}">Retour à l'accueil</a>
-
 {% endblock %}
-

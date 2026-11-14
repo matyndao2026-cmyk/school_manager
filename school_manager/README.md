@@ -236,9 +236,9 @@ Pour améliorer l'application, les prochaines étapes seront :
 
 Par exemple, une vue pourra ensuite récupérer les étudiants depuis la base de données :
 
-```python
+
 students = Student.objects.all()
-```
+
 
 Les données seront alors récupérées depuis le modèle `Student`, au lieu d'être directement stockées dans une liste Python.
 
@@ -249,3 +249,4 @@ Ce TP m'a permis de découvrir les vues Django, les URL, les templates HTML, le 
 J'ai également appris à organiser une application Django en séparant le traitement des requêtes de la présentation des pages.
 
 La prochaine étape sera de connecter l'application à une base de données afin de rendre la gestion des étudiants plus complète et professionnelle.
+

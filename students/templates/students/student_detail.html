@@ -1,5 +1,4 @@
-
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block title %}Détail de l'étudiant{% endblock %}
 
@@ -9,15 +8,19 @@
 
 <p><strong>Numéro :</strong> {{ student.id }}</p>
 
-<p><strong>Nom :</strong> {{ student.nom }}</p>
+<p><strong>Nom :</strong> {{ student.last_name }}</p>
 
-<p><strong>Prénom :</strong> {{ student.prenom }}</p>
+<p><strong>Prénom :</strong> {{ student.first_name }}</p>
+
+<p><strong>Email :</strong> {{ student.email }}</p>
+
+<p><strong>Téléphone :</strong> {{ student.phone|default:"Non renseigné" }}</p>
 
 <p><strong>Classe :</strong> {{ student.classe }}</p>
 
 <p>
     <strong>Statut :</strong>
-    {% if student.actif %}
+    {% if student.active %}
         Actif
     {% else %}
         Inactif
@@ -26,11 +29,10 @@
 
 <br>
 
-<a href="{% url 'student_list' %}">Retour à la liste des étudiants</a>
+<a href="{% url 'students:student_list' %}">Retour à la liste des étudiants</a>
 
 <br><br>
 
-<a href="{% url 'home' %}">Retour à l'accueil</a>
+<a href="{% url 'pages:home' %}">Retour à l'accueil</a>
 
 {% endblock %}
-```

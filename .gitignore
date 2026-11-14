@@ -5,3 +5,4 @@ venv/
 db.sqlite3
 .idea/
 .vscode/
+db_sauvegarde.sqlite3
