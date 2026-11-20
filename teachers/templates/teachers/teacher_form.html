@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter un enseignant{% endblock %}
+
+{% block content %}
+
+<h1>Ajouter un enseignant</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <p>
+        <label>Prénom :</label>
+        {{ form.first_name }}
+    </p>
+
+    <p>
+        <label>Nom :</label>
+        {{ form.last_name }}
+    </p>
+
+    <p>
+        <label>Email :</label>
+        {{ form.email }}
+    </p>
+
+    <p>
+        <label>Matière :</label>
+        {{ form.subject }}
+    </p>
+
+    <button type="submit">Enregistrer</button>
+</form>
+
+{% endblock %}

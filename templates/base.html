@@ -1,36 +1,44 @@
-﻿{% load static %} 
-<!DOCTYPE html> 
-<html lang="fr"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title>{% block title %}School Manager{% endblock %}</title> 
-    <link rel="stylesheet" href="{% static 'students/style.css' %}"> 
-</head> 
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}School Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
 <body>
     <header>
         <h2>School Manager</h2>
-       <nav>
-    <a href="{% url 'pages:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Accueil</a>
 
+        <nav>
+            <a href="{% url 'pages:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Accueil</a>
 
-<a href="{% url 'students:student_list' %}" class="{% if request.resolver_match.url_name == 'student_list' %}active{% endif %}">Étudiants</a>
+            <a href="{% url 'students:student_list' %}" class="{% if request.resolver_match.url_name == 'student_list' %}active{% endif %}">Étudiants</a>
 
-<a href="{% url 'teachers:teacher_list' %}" class="{% if request.resolver_match.url_name == 'teacher_list' %}active{% endif %}">Enseignants</a>
+            <a href="{% url 'teachers:teacher_list' %}" class="{% if request.resolver_match.url_name == 'teacher_list' %}active{% endif %}">Enseignants</a>
 
-<a href="{% url 'pages:about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">À propos</a>
+            <a href="{% url 'pages:about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">À propos</a>
 
-<a href="{% url 'teachers:course_list' %}" class="{% if request.resolver_match.url_name == 'course_list' %}active{% endif %}">Cours</a>
-
-
-</nav>
-
+            <a href="{% url 'teachers:course_list' %}" class="{% if request.resolver_match.url_name == 'course_list' %}active{% endif %}">Cours</a>
+        </nav>
     </header>
+
     <main>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}{% endblock %}
+
     </main>
+
     <footer>
         <p>© 2026 School Manager - Gestion scolaire</p>
     </footer>
 </body>
 </html>
-

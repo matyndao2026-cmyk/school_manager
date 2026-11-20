@@ -319,7 +319,7 @@ Cela évite qu'une erreur non gérée soit affichée à l'utilisateur.
 
 Exemple :
 
-```python
+```python                 
 from django.shortcuts import get_object_or_404
 
 def student_detail(request, id):

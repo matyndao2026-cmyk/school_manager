@@ -5,6 +5,9 @@
 {% block content %}
 
 <h1>Liste des enseignants</h1>
+<a href="{% url 'teachers:create' %}" class="btn">
+    + Ajouter un enseignant
+</a>
 
 <p>
     Nombre total : {{ teachers|length }} enseignant{{ teachers|length|pluralize }}

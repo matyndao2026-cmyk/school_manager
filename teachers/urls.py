@@ -5,5 +5,6 @@ app_name = 'teachers'
 
 urlpatterns = [
     path('', views.teacher_list, name='teacher_list'),
+    path('new/', views.teacher_create, name='create'),
     path('courses/', views.course_list, name='course_list'),
 ]

@@ -27,3 +27,17 @@ nav a.active {
     border-radius: 5px;
     padding: 8px 12px;
 }
+.message {
+    padding: 10px 14px;
+    border-radius: 4px;
+}
+
+.message.success {
+    background: #F5EBE0;
+    color: #4C311E;
+}
+
+.message.error {
+    background: #fce9e7;
+    color: #a12a1e;
+}
